@@ -66,7 +66,13 @@ open class CDMarkdownUnderline: CDMarkdownCommonElement {
         self.paragraphStyle = paragraphStyle
     }
     
-    open func addAttributes(_ attributedString: NSMutableAttributedString, range: NSRange) {        
-        attributedString.addAttribute(.underlineStyle, value: NSUnderlineStyle.styleSingle.rawValue, range: range)
+    open func addAttributes(_ attributedString: NSMutableAttributedString, range: NSRange) {
+        #if swift(>=4.2)
+                attributedString.addAttribute(.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: range)
+        #elseif swift(>=4.0)
+            attributedString.addAttribute(.underlineStyle, value: NSUnderlineStyle.styleSingle.rawValue, range: range)
+        #else
+        
+        #endif
     }
 }
