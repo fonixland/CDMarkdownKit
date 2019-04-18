@@ -33,7 +33,8 @@
 
 open class CDMarkdownList: CDMarkdownLevelElement {
 
-    fileprivate static let regex = "^\\s*([\\*\\+\\-]{1,%@})[ \t]+(.+)$"
+//    fileprivate static let regex = "^(\\s*)([\\*\\+\\-]{1,%@})[ \t]+(.+)$"
+    fileprivate static let regex = "^(\\s*)([\\*\\+\\-\\d])(.+)$"
 
     open var maxLevel: Int
     open var font: CDFont?
@@ -52,7 +53,7 @@ open class CDMarkdownList: CDMarkdownLevelElement {
     public init(font: CDFont? = nil,
                 maxLevel: Int = 0,
                 indicator: String = "•",
-                separator: String = "  ",
+                separator: String = "    ",
                 color: CDColor? = nil,
                 backgroundColor: CDColor? = nil,
                 paragraphStyle: NSParagraphStyle? = nil) {
@@ -69,6 +70,7 @@ open class CDMarkdownList: CDMarkdownLevelElement {
             paragraphStyle.paragraphSpacing = 2
             paragraphStyle.paragraphSpacingBefore = 0
             paragraphStyle.firstLineHeadIndent = 0
+            paragraphStyle.headIndent = 0
             paragraphStyle.lineSpacing = 1.0
             self.paragraphStyle = paragraphStyle
         }
@@ -94,15 +96,18 @@ open class CDMarkdownList: CDMarkdownLevelElement {
         guard let paragraphStyle = self.paragraphStyle else { return }
         let updatedParagraphStyle = paragraphStyle.mutableCopy() as? NSMutableParagraphStyle ?? NSMutableParagraphStyle()
         updatedParagraphStyle.headIndent = indicatorSize.width + (separatorSize.width * floatLevel)
+        updatedParagraphStyle.firstLineHeadIndent = updatedParagraphStyle.headIndent
 
         attributedString.addParagraphStyle(updatedParagraphStyle,
                                            toRange: range)
+        attributedString.addBackgroundColor(.red, toRange: range)
     }
 
     open func addAttributes(_ attributedString: NSMutableAttributedString,
                             range: NSRange,
                             level: Int) {
-        attributedString.addAttributes(attributesForLevel(level-1),
+        attributedString.addAttributes(attributesForLevel(level),
                                        range: range)
+//        attributedString.addBackgroundColor(.yellow, toRange: range)
     }
 }

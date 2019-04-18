@@ -33,8 +33,9 @@
 
 open class CDMarkdownBold: CDMarkdownCommonElement {
 
-    fileprivate static let regex = "(\\s+|^)(\\*\\*|__)(.+?)(\\2)"
-
+//    fileprivate static let regex = "(\\s+|^)(\\*\\*|__)(.+?)(\\2)"
+    fileprivate static let regex = "(\\s+|^)(\\*\\*)(.+?)(\\2)"
+    
     open var font: CDFont?
     open var color: CDColor?
     open var backgroundColor: CDColor?
@@ -55,6 +56,37 @@ open class CDMarkdownBold: CDMarkdownCommonElement {
             self.font = font?.bold()
         }
 
+        self.color = color
+        self.backgroundColor = backgroundColor
+        self.paragraphStyle = paragraphStyle
+    }
+}
+
+open class CDMarkdownBoldItalic: CDMarkdownCommonElement {
+    
+    fileprivate static let regex = "(\\s+|^)(\\*\\*\\*|___)(.+?)(\\2)"
+    
+    open var font: CDFont?
+    open var color: CDColor?
+    open var backgroundColor: CDColor?
+    open var paragraphStyle: NSParagraphStyle?
+    
+    open var regex: String {
+        return CDMarkdownBoldItalic.regex
+    }
+    
+    public init(font: CDFont? = nil,
+                customBoldItalicFont: CDFont? = nil,
+                color: CDColor? = nil,
+                backgroundColor: CDColor? = nil,
+                paragraphStyle: NSParagraphStyle? = nil) {
+        if let customBoldItalicFont = customBoldItalicFont {
+            self.font = customBoldItalicFont
+        } else {
+            self.font = font?.boldItalic()
+//            self.font = font?.italic()
+        }
+        
         self.color = color
         self.backgroundColor = backgroundColor
         self.paragraphStyle = paragraphStyle

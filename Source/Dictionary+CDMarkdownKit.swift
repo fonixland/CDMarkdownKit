@@ -72,4 +72,14 @@ internal extension Dictionary where Key == CDAttributedStringKey {
         self[NSParagraphStyleAttributeName] = paragraphStyle
 #endif
     }
+    
+    mutating func addUnderline() {
+#if swift(>=4.2)
+        self[NSAttributedString.Key.underlineStyle] = NSUnderlineStyle.single.rawValue
+#elseif swift(>=4.0)
+        self[NSAttributedStringKey.underlineStyle] = (NSUnderlineStyle.styleSingle.rawValue as! Value)
+#else
+
+#endif
+    }
 }

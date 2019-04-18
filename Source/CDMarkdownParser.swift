@@ -46,8 +46,10 @@ open class CDMarkdownParser {
     public let quote: CDMarkdownQuote
     public let link: CDMarkdownLink
     public let automaticLink: CDMarkdownAutomaticLink
+    public let boldItalic: CDMarkdownBoldItalic
     public let bold: CDMarkdownBold
     public let italic: CDMarkdownItalic
+    public let underline: CDMarkdownUnderline
     public let code: CDMarkdownCode
     public let syntax: CDMarkdownSyntax
 #if os(iOS) || os(macOS) || os(tvOS)
@@ -69,8 +71,10 @@ open class CDMarkdownParser {
 
     // MARK: - Initializer
     public init(font: CDFont = CDFont.systemFont(ofSize: 12),
+                boldItalicFont: CDFont? = nil,
                 boldFont: CDFont? = nil,
                 italicFont: CDFont? = nil,
+                underlineFont: CDFont? = nil,
                 fontColor: CDColor = CDColor.black,
                 backgroundColor: CDColor = CDColor.clear,
                 paragraphStyle: NSParagraphStyle? = nil,
@@ -110,6 +114,11 @@ open class CDMarkdownParser {
                                                 color: fontColor,
                                                 backgroundColor: backgroundColor,
                                                 paragraphStyle: paragraphStyle)
+        boldItalic = CDMarkdownBoldItalic(font: font,
+                                          customBoldItalicFont: boldItalicFont,
+                                          color: fontColor,
+                                          backgroundColor: backgroundColor,
+                                          paragraphStyle: paragraphStyle)
         bold = CDMarkdownBold(font: font,
                               customBoldFont: boldFont,
                               color: fontColor,
@@ -117,6 +126,11 @@ open class CDMarkdownParser {
                               paragraphStyle: paragraphStyle)
         italic = CDMarkdownItalic(font: font,
                                   customItalicFont: italicFont,
+                                  color: fontColor,
+                                  backgroundColor: backgroundColor,
+                                  paragraphStyle: paragraphStyle)
+        underline = CDMarkdownUnderline(font: font,
+                                  customUnderlineFont: underlineFont,
                                   color: fontColor,
                                   backgroundColor: backgroundColor,
                                   paragraphStyle: paragraphStyle)
@@ -139,9 +153,9 @@ open class CDMarkdownParser {
         self.automaticLinkDetectionEnabled = automaticLinkDetectionEnabled
         self.escapingElements = [codeEscaping, escaping]
 #if os(iOS) || os(macOS) || os(tvOS)
-        self.defaultElements = [header, list, quote, link, automaticLink, bold, italic, image]
+        self.defaultElements = [header, list, quote, link, automaticLink, boldItalic, bold, italic, underline, image]
 #else
-        self.defaultElements = [header, list, quote, link, automaticLink, bold, italic]
+        self.defaultElements = [header, list, quote, link, automaticLink, boldItalic, bold, italic, underline]
 #endif
         self.unescapingElements = [code, syntax, unescaping]
         self.customElements = customElements
@@ -205,6 +219,10 @@ open class CDMarkdownParser {
         elements.append(contentsOf: unescapingElements)
         elements.forEach { element in
             if automaticLinkDetectionEnabled || type(of: element) != CDMarkdownAutomaticLink.self {
+//                if type(of: element) == CDMarkdownUnderline.self {
+//                    let textRange = NSMakeRange(40, 50)
+//                    attributedString.addAttribute(.underlineStyle, value: NSUnderlineStyle.styleSingle.rawValue, range: textRange)
+//                }
                 element.parse(attributedString)
             }
         }

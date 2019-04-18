@@ -73,6 +73,10 @@ internal extension CDFont {
                       size: self.pointSize)
     }
 
+    func boldItalic() -> CDFont {
+        return withTraits(.traitItalic, .traitBold)
+    }
+    
     func bold() -> CDFont {
         return withTraits(.traitBold)
     }
@@ -80,6 +84,5 @@ internal extension CDFont {
     func italic() -> CDFont {
         return withTraits(.traitItalic)
     }
-
 #endif
 }

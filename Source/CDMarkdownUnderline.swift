@@ -1,5 +1,12 @@
 //
-//  CDMarkdownCode.swift
+//  CDMarkdownUnderline.swift
+//  CDMarkdownKit iOS
+//
+//  Created by Weakley, Bill on 4/15/19.
+//  Copyright © 2019 Christopher de Haan. All rights reserved.
+//
+//
+//  CDMarkdownItalic.swift
 //  CDMarkdownKit
 //
 //  Created by Christopher de Haan on 11/7/16.
@@ -26,53 +33,40 @@
 //
 
 #if os(iOS) || os(tvOS) || os(watchOS)
-    import UIKit
+import UIKit
 #elseif os(macOS)
-    import Cocoa
+import Cocoa
 #endif
 
-open class CDMarkdownCode: CDMarkdownCommonElement {
-
-    fileprivate static let regex = "(\\s+|^|\\()(`{1})(\\s*[^`]*?\\s*)(\\2)(?!`)(\\)?)"
-
+open class CDMarkdownUnderline: CDMarkdownCommonElement {
+    
+    fileprivate static let regex = "(\\s+|^)(__)(.+?)(\\2)"
     open var font: CDFont?
     open var color: CDColor?
     open var backgroundColor: CDColor?
-    open var underline: Bool?
     open var paragraphStyle: NSParagraphStyle?
-
+    
     open var regex: String {
-        return CDMarkdownCode.regex
+        return CDMarkdownUnderline.regex
     }
-
-    public init(font: CDFont? = CDFont(name: "Menlo-Regular", size: 12),
-                color: CDColor? = CDColor.codeTextRed(),
-                backgroundColor: CDColor? = CDColor.codeBackgroundRed(),
-                underline: Bool? = false,
+    
+    public init(font: CDFont? = nil,
+                customUnderlineFont: CDFont? = nil,
+                color: CDColor? = nil,
+                backgroundColor: CDColor? = nil,
                 paragraphStyle: NSParagraphStyle? = nil) {
-        self.font = font
+        if let customUnderlineFont = customUnderlineFont {
+            self.font = customUnderlineFont
+        } else {
+            self.font = font
+        }
+        
         self.color = color
         self.backgroundColor = backgroundColor
-        self.underline = underline
         self.paragraphStyle = paragraphStyle
     }
-
-    open func addAttributes(_ attributedString: NSMutableAttributedString,
-                            range: NSRange) {
-        let matchString: String = attributedString.attributedSubstring(from: range).string
-        guard let unescapedString = matchString.unescapeUTF16() else { return }
-        attributedString.replaceCharacters(in: range,
-                                           with: unescapedString)
-        let range = NSRange(location: range.location,
-                            length: unescapedString.characterCount())
-        attributedString.addAttributes(attributes,
-                                       range: range)
-        let mutableString = attributedString.mutableString
-        // Remove \n if in string, not valid in Code element
-        // Use Syntax element for \n to parse in string
-        mutableString.replaceOccurrences(of: "\n",
-                                         with: "",
-                                         options: [],
-                                         range: range)
+    
+    open func addAttributes(_ attributedString: NSMutableAttributedString, range: NSRange) {        
+        attributedString.addAttribute(.underlineStyle, value: NSUnderlineStyle.styleSingle.rawValue, range: range)
     }
 }
