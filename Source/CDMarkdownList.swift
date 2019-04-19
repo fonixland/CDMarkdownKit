@@ -105,7 +105,7 @@ open class CDMarkdownList: CDMarkdownLevelElement {
     open func addAttributes(_ attributedString: NSMutableAttributedString,
                             range: NSRange,
                             level: Int) {
-        attributedString.addAttributes(attributesForLevel(level),
+        attributedString.addAttributes(attributesForLevel(level-1),
                                        range: range)
     }
 }
