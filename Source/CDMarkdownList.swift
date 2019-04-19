@@ -100,7 +100,6 @@ open class CDMarkdownList: CDMarkdownLevelElement {
 
         attributedString.addParagraphStyle(updatedParagraphStyle,
                                            toRange: range)
-        attributedString.addBackgroundColor(.red, toRange: range)
     }
 
     open func addAttributes(_ attributedString: NSMutableAttributedString,
@@ -108,6 +107,5 @@ open class CDMarkdownList: CDMarkdownLevelElement {
                             level: Int) {
         attributedString.addAttributes(attributesForLevel(level),
                                        range: range)
-//        attributedString.addBackgroundColor(.yellow, toRange: range)
     }
 }
