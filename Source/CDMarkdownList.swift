@@ -33,8 +33,9 @@
 
 open class CDMarkdownList: CDMarkdownLevelElement {
 
-    fileprivate static let regex = "^(\\s*)([\\*\\+\\-]{1,%@})[ \t]+(.+)$"
-//    fileprivate static let regex = "^(\\s*)([\\*\\+\\-\\d])(.+)$"
+    fileprivate static let regex = "^\\s*([\\*\\+\\-]{1,})(.+)$"
+//    fileprivate static let regex = "^(\\s*)([\\*\\+\\-\\d]{1,})(.+)$"
+////    fileprivate static let regex = "^(\\s*)([\\*\\+\\-\\d])(.+)$"
 
     open var maxLevel: Int
     open var font: CDFont?
@@ -45,15 +46,16 @@ open class CDMarkdownList: CDMarkdownLevelElement {
     open var indicator: String
 
     open var regex: String {
-        let level: String = maxLevel > 0 ? "\(maxLevel)" : ""
-        return String(format: CDMarkdownList.regex,
-                      level)
+//        let level: String = maxLevel > 0 ? "\(maxLevel)" : ""
+//        return String(format: CDMarkdownList.regex,
+//                      level)
+        return String(format: CDMarkdownList.regex)
     }
 
     public init(font: CDFont? = nil,
                 maxLevel: Int = 0,
                 indicator: String = "•",
-                separator: String = "    ",
+                separator: String = "",
                 color: CDColor? = nil,
                 backgroundColor: CDColor? = nil,
                 paragraphStyle: NSParagraphStyle? = nil) {
@@ -90,13 +92,13 @@ open class CDMarkdownList: CDMarkdownLevelElement {
     open func addFullAttributes(_ attributedString: NSMutableAttributedString,
                                 range: NSRange,
                                 level: Int) {
-        let indicatorSize = "\(indicator) ".sizeWithAttributes(attributes)
-        let separatorSize = separator.sizeWithAttributes(attributes)
-        let floatLevel = CGFloat(level)
+//        let indicatorSize = "\(indicator) ".sizeWithAttributes(attributes)
+//        let separatorSize = separator.sizeWithAttributes(attributes)
+//        let floatLevel = CGFloat(level)
         guard let paragraphStyle = self.paragraphStyle else { return }
         let updatedParagraphStyle = paragraphStyle.mutableCopy() as? NSMutableParagraphStyle ?? NSMutableParagraphStyle()
-        updatedParagraphStyle.headIndent = indicatorSize.width + (separatorSize.width * floatLevel)
-        updatedParagraphStyle.firstLineHeadIndent = updatedParagraphStyle.headIndent
+//        updatedParagraphStyle.headIndent = indicatorSize.width + (separatorSize.width * floatLevel)
+//        updatedParagraphStyle.firstLineHeadIndent = updatedParagraphStyle.headIndent
 
         attributedString.addParagraphStyle(updatedParagraphStyle,
                                            toRange: range)
