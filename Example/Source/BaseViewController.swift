@@ -43,11 +43,11 @@ class BaseViewController: UIViewController {
     private let customMarkdownParser = CDMarkdownParser(fontColor: UIColor.brown,
                                                         backgroundColor: UIColor.yellow)
     private let defaultMarkdownParser = CDMarkdownParser()
-    private let markdownString = NSLocalizedString("Markdown",
-                                                   tableName: nil,
-                                                   bundle: Bundle.main,
-                                                   value: "",
-                                                   comment: "")
+//    private let markdownString = NSLocalizedString("Markdown",
+//                                                   tableName: nil,
+//                                                   bundle: Bundle.main,
+//                                                   value: "",
+//                                                   comment: "")
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -106,8 +106,8 @@ class BaseViewController: UIViewController {
     // MARK: - Internal Methods
 
     func configure() -> NSAttributedString {
-        let attributedString = NSAttributedString(string: self.markdownString)
-        // Determine whether to show default or custom parsing
+        let readMeURL = Bundle.main.url(forResource: "markdown_test_bt", withExtension: "md")!
+        let attributedString = try! String(contentsOf: readMeURL)
         var attributedText = NSAttributedString(string: "")
         if self.segmentedControl.selectedSegmentIndex == 0 {
             self.onDefaultParser?()
