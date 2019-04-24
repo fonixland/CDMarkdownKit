@@ -54,7 +54,7 @@ open class CDMarkdownList: CDMarkdownLevelElement {
     public init(font: CDFont? = nil,
                 maxLevel: Int = 0,
                 indicator: String = "•",
-                separator: String = "",
+                separator: String = " ",
                 color: CDColor? = nil,
                 backgroundColor: CDColor? = nil,
                 paragraphStyle: NSParagraphStyle? = nil) {
@@ -80,12 +80,8 @@ open class CDMarkdownList: CDMarkdownLevelElement {
     open func formatText(_ attributedString: NSMutableAttributedString,
                          range: NSRange,
                          level: Int) {
-        var string = (0..<level).reduce("") { (string, _) -> String in
-            return "\(string)\(separator)"
-        }
-        string = "\(string)\(indicator) "
         attributedString.replaceCharacters(in: range,
-                                           with: string)
+                                           with: "\(indicator)\(separator)")
     }
 
     open func addFullAttributes(_ attributedString: NSMutableAttributedString,
@@ -108,5 +104,28 @@ open class CDMarkdownList: CDMarkdownLevelElement {
                             level: Int) {
         attributedString.addAttributes(attributesForLevel(level-1),
                                        range: range)
+    }
+    
+    func listMatches(for pattern: String, inString string: String) -> [String] {
+        guard let regex = try? NSRegularExpression(pattern: pattern, options: []) else {
+            return []
+        }
+        
+        let range = NSRange(string.startIndex..., in: string)
+        let matches = regex.matches(in: string, options: [], range: range)
+        
+        return matches.map {
+            let range = Range($0.range, in: string)!
+            return String(string[range])
+        }
+    }
+    
+    func replaceMatches(for pattern: String, inString string: String, withString replacementString: String) -> String? {
+        guard let regex = try? NSRegularExpression(pattern: pattern, options: []) else {
+            return string
+        }
+        
+        let range = NSRange(string.startIndex..., in: string)
+        return regex.stringByReplacingMatches(in: string, options: [], range: range, withTemplate: replacementString)
     }
 }
