@@ -71,7 +71,7 @@ open class CDMarkdownHeader: CDMarkdownLevelElement {
         } else {
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.paragraphSpacing = 6
-            paragraphStyle.paragraphSpacingBefore = 12
+            paragraphStyle.paragraphSpacingBefore = 0
             self.paragraphStyle = paragraphStyle
         }
         self.fontIncrease = fontIncrease
