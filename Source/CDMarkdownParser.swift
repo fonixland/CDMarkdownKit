@@ -194,8 +194,7 @@ open class CDMarkdownParser {
                                                         length: mutableString.length))
         // space-space-newline hack
         mutableString.replaceOccurrences(of: "  \n",
-                                         with: "\n\n",
-                                         options: .regularExpression,
+                                         with: "\r\n",
                                          range: NSRange(location: 0,
                                                         length: mutableString.length))
         let regExp = try? NSRegularExpression(pattern: "^[^\\t\\_\\d+\\+\\-\\*\\# +\\w+]",
