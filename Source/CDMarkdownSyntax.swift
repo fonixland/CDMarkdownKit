@@ -44,7 +44,7 @@ open class CDMarkdownSyntax: CDMarkdownCommonElement {
         return CDMarkdownSyntax.regex
     }
 
-    public init(font: CDFont? = CDFont(name: "Menlo-Regular", size: 12),
+    public init(font: CDFont? = CDFont(name: "Menlo-Regular", size: 11),
                 color: CDColor? = CDColor.syntaxTextGray(),
                 backgroundColor: CDColor? = CDColor.syntaxBackgroundGray(),
                 paragraphStyle: NSParagraphStyle? = nil) {

@@ -56,7 +56,7 @@ open class CDMarkdownHeader: CDMarkdownLevelElement {
         return String(format: CDMarkdownHeader.regex, level)
     }
 
-    public init(font: CDFont? = CDFont.boldSystemFont(ofSize: 12),
+    public init(font: CDFont? = CDFont.boldSystemFont(ofSize: 11),
                 maxLevel: Int = 0,
                 fontIncrease: Int = 2,
                 color: CDColor? = nil,

@@ -45,7 +45,7 @@ open class CDMarkdownCode: CDMarkdownCommonElement {
         return CDMarkdownCode.regex
     }
 
-    public init(font: CDFont? = CDFont(name: "Menlo-Regular", size: 12),
+    public init(font: CDFont? = CDFont(name: "Menlo-Regular", size: 11),
                 color: CDColor? = CDColor.codeTextRed(),
                 backgroundColor: CDColor? = CDColor.codeBackgroundRed(),
                 underline: Bool? = false,
