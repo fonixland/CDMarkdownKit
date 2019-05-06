@@ -62,7 +62,7 @@ class BaseViewController: UIViewController {
         self.customMarkdownParser.bold.color = UIColor.cyan
         self.customMarkdownParser.bold.backgroundColor = UIColor.purple
         let boldParagraphStyle = NSMutableParagraphStyle()
-        boldParagraphStyle.paragraphSpacing = 3
+        boldParagraphStyle.paragraphSpacing = 0
         boldParagraphStyle.paragraphSpacingBefore = 0
         boldParagraphStyle.lineSpacing = 1.38
         self.customMarkdownParser.bold.paragraphStyle = boldParagraphStyle
@@ -71,7 +71,7 @@ class BaseViewController: UIViewController {
         self.customMarkdownParser.list.color = UIColor.black
         self.customMarkdownParser.list.backgroundColor = UIColor.red
         let listParagraphStyle = NSMutableParagraphStyle()
-        listParagraphStyle.paragraphSpacing = 3
+        listParagraphStyle.paragraphSpacing = 0
         listParagraphStyle.paragraphSpacingBefore = 0
         listParagraphStyle.lineSpacing = 1.38
         self.customMarkdownParser.list.paragraphStyle = listParagraphStyle
@@ -80,7 +80,7 @@ class BaseViewController: UIViewController {
         self.customMarkdownParser.link.color = UIColor.blue
         self.customMarkdownParser.link.backgroundColor = UIColor.green
         let linkParagraphStyle = NSMutableParagraphStyle()
-        linkParagraphStyle.paragraphSpacing = 3
+        linkParagraphStyle.paragraphSpacing = 0
         linkParagraphStyle.paragraphSpacingBefore = 0
         linkParagraphStyle.lineSpacing = 1.38
         self.customMarkdownParser.link.paragraphStyle = linkParagraphStyle
