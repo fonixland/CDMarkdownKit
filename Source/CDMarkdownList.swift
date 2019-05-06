@@ -80,8 +80,16 @@ open class CDMarkdownList: CDMarkdownLevelElement {
     open func formatText(_ attributedString: NSMutableAttributedString,
                          range: NSRange,
                          level: Int) {
-        attributedString.replaceCharacters(in: range,
-                                           with: "\(indicator)\(separator)")
+        let previousRange = NSRange(location: range.location-4, length: 4)
+        if attributedString.attributedSubstring(from: previousRange).string == "    " {
+            attributedString.replaceCharacters(in: range,
+                with: "◦\(separator)")
+        }
+        else {
+            attributedString.replaceCharacters(in: range,
+                                               with: "\(indicator)\(separator)")
+        }
+        
     }
 
     open func addFullAttributes(_ attributedString: NSMutableAttributedString,
