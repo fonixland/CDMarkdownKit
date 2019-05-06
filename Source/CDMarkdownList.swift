@@ -68,11 +68,11 @@ open class CDMarkdownList: CDMarkdownLevelElement {
             self.paragraphStyle = paragraphStyle
         } else {
             let paragraphStyle = NSMutableParagraphStyle()
-            paragraphStyle.paragraphSpacing = 2
+            paragraphStyle.paragraphSpacing = 3
             paragraphStyle.paragraphSpacingBefore = 0
             paragraphStyle.firstLineHeadIndent = 0
             paragraphStyle.headIndent = 0
-            paragraphStyle.lineSpacing = 1.0
+            paragraphStyle.lineSpacing = 1.38
             self.paragraphStyle = paragraphStyle
         }
     }
