@@ -183,11 +183,6 @@ open class CDMarkdownParser {
     open func parse(_ markdown: NSAttributedString) -> NSAttributedString {
         let attributedString = NSMutableAttributedString(attributedString: markdown)
         let mutableString = attributedString.mutableString
-        mutableString.replaceOccurrences(of: "^\n",
-                                         with: "",
-                                         options: .regularExpression,
-                                         range: NSRange(location: 0,
-                                                        length: mutableString.length))
         mutableString.replaceOccurrences(of: "\n\n+",
                                          with: "\n",
                                          options: .regularExpression,
