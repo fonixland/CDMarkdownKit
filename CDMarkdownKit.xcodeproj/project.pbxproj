@@ -520,19 +520,23 @@
 				TargetAttributes = {
 					B2ACA0761FBF93ED00EABEF6 = {
 						CreatedOnToolsVersion = 9.1;
+						DevelopmentTeam = KC56XKU776;
 						LastSwiftMigration = 0940;
 						ProvisioningStyle = Automatic;
 					};
 					B2ACA0831FBF940700EABEF6 = {
 						CreatedOnToolsVersion = 9.1;
+						DevelopmentTeam = KC56XKU776;
 						LastSwiftMigration = 0940;
 					};
 					B2ACA0901FBF941B00EABEF6 = {
 						CreatedOnToolsVersion = 9.1;
+						DevelopmentTeam = KC56XKU776;
 						LastSwiftMigration = 0940;
 					};
 					B2B365B61F3245800078B962 = {
 						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = KC56XKU776;
 						LastSwiftMigration = 0940;
 						ProvisioningStyle = Automatic;
 					};
@@ -970,6 +974,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = KC56XKU776;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1037,6 +1042,7 @@
 				COPY_PHASE_STRIP = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = KC56XKU776;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
