@@ -88,7 +88,7 @@ open class CDMarkdownParser {
             self.paragraphStyle = paragraphStyle
         } else {
             let paragraphStyle = NSMutableParagraphStyle()
-            paragraphStyle.paragraphSpacing = 20
+            paragraphStyle.paragraphSpacing = 10
             paragraphStyle.paragraphSpacingBefore = 0
             paragraphStyle.lineSpacing = 1.38
             self.paragraphStyle = paragraphStyle
