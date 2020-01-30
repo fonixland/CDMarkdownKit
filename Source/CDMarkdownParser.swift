@@ -91,11 +91,13 @@ open class CDMarkdownParser {
             self.paragraphStyle = paragraphStyle
         } else {
             let paragraphStyle = NSMutableParagraphStyle()
-            paragraphStyle.paragraphSpacing = 5
+            paragraphStyle.paragraphSpacing = 0
             paragraphStyle.paragraphSpacingBefore = 0
             paragraphStyle.lineSpacing = 1
             self.paragraphStyle = paragraphStyle
         }
+        
+        print("paragraphStyle: \(self.paragraphStyle)")
 
         header = CDMarkdownHeader(font: font,
                                   color: fontColor,
