@@ -82,6 +82,9 @@ open class CDMarkdownParser {
                 automaticLinkDetectionEnabled: Bool = true,
                 customElements: [CDMarkdownElement] = []) {
         self.font = font
+        
+        print("font: \(self.font)")
+        
         self.fontColor = fontColor
         self.backgroundColor = backgroundColor
         if let paragraphStyle = paragraphStyle {
