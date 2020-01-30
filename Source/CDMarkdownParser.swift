@@ -70,7 +70,7 @@ open class CDMarkdownParser {
     public let paragraphStyle: NSParagraphStyle
 
     // MARK: - Initializer
-    public init(font: CDFont = CDFont.systemFont(ofSize: 11),
+    public init(font: CDFont = CDFont.systemFont(ofSize: 10),
                 boldItalicFont: CDFont? = nil,
                 boldFont: CDFont? = nil,
                 italicFont: CDFont? = nil,
@@ -91,7 +91,7 @@ open class CDMarkdownParser {
             self.paragraphStyle = paragraphStyle
         } else {
             let paragraphStyle = NSMutableParagraphStyle()
-            paragraphStyle.paragraphSpacing = 10
+            paragraphStyle.paragraphSpacing = 5
             paragraphStyle.paragraphSpacingBefore = 0
             paragraphStyle.lineSpacing = 1
             self.paragraphStyle = paragraphStyle
