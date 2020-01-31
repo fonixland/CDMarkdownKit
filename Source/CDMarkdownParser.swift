@@ -82,9 +82,7 @@ open class CDMarkdownParser {
                 automaticLinkDetectionEnabled: Bool = true,
                 customElements: [CDMarkdownElement] = []) {
         self.font = font
-        
-        print("font: \(self.font)")
-        
+                
         self.fontColor = fontColor
         self.backgroundColor = backgroundColor
         if let paragraphStyle = paragraphStyle {
@@ -97,8 +95,6 @@ open class CDMarkdownParser {
             self.paragraphStyle = paragraphStyle
         }
         
-        print("paragraphStyle: \(self.paragraphStyle)")
-
         header = CDMarkdownHeader(font: font,
                                   color: fontColor,
                                   backgroundColor: backgroundColor,
