@@ -192,27 +192,8 @@ open class CDMarkdownParser {
 //                                         options: .regularExpression,
 //                                         range: NSRange(location: 0,
 //                                                        length: mutableString.length))
-
-        // space-space-newline hack
-        let regExpSSNL = try? NSRegularExpression(pattern: "  \n", options: .anchorsMatchLines)
-        if let regExpSSNL = regExpSSNL {
-            regExpSSNL.replaceMatches(in: mutableString,
-                                      options: [],
-                                      range: NSRange(location: 0,
-                                                     length: mutableString.length),
-                                      withTemplate: "\n\n")
-        }
         
-        let regExpNL = try? NSRegularExpression(pattern: "(?<!\n)\n", options: .anchorsMatchLines)
-        if let regExpNL = regExpNL {
-            regExpNL.replaceMatches(in: mutableString,
-                                      options: [],
-                                      range: NSRange(location: 0,
-                                                     length: mutableString.length),
-                                      withTemplate: "")
-        }
-
-        let regExpNLNL = try? NSRegularExpression(pattern: "(?<=\n)\n", options: .anchorsMatchLines)
+        let regExpNLNL = try? NSRegularExpression(pattern: "\n(?=\n)", options: .anchorsMatchLines)
         if let regExpNLNL = regExpNLNL {
             regExpNLNL.replaceMatches(in: mutableString,
                                       options: [],
@@ -220,6 +201,25 @@ open class CDMarkdownParser {
                                                      length: mutableString.length),
                                       withTemplate: "\n")
         }
+        
+        let regExpNL = try? NSRegularExpression(pattern: "\n(?![\n\\_\\*\\d])(?=\\w)", options: .anchorsMatchLines)
+        if let regExpNL = regExpNL {
+            regExpNL.replaceMatches(in: mutableString,
+                                      options: [],
+                                      range: NSRange(location: 0,
+                                                     length: mutableString.length),
+                                      withTemplate: " ")
+        }
+        
+//        // space-space-newline hack
+//        let regExpSSNL = try? NSRegularExpression(pattern: "  \n", options: .anchorsMatchLines)
+//        if let regExpSSNL = regExpSSNL {
+//            regExpSSNL.replaceMatches(in: mutableString,
+//                                      options: [],
+//                                      range: NSRange(location: 0,
+//                                                     length: mutableString.length),
+//                                      withTemplate: "\n\n")
+//        }
         
         mutableString.replaceOccurrences(of: "&nbsp;",
                                          with: " ",
@@ -231,7 +231,7 @@ open class CDMarkdownParser {
         //                                         range: NSRange(location: 0,
         //                                                        length: mutableString.length))
         
-        let regExp = try? NSRegularExpression(pattern: "^[^\\t\\_\\d+\\+\\-\\*\\# +\\w+]",
+        let regExp = try? NSRegularExpression(pattern: "^[^\\t\\_\\d+\\+\\-\\*\\# +\\w+\\n]",
 //        let regExp = try? NSRegularExpression(pattern: "^\\s+",
                                               options: .anchorsMatchLines)
         if let regExp = regExp {
