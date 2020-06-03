@@ -70,7 +70,7 @@ open class CDMarkdownUnderline: CDMarkdownCommonElement {
         #if swift(>=4.2)
                 attributedString.addAttribute(.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: range)
         #elseif swift(>=4.0)
-            attributedString.addAttribute(.underlineStyle, value: NSUnderlineStyle.styleSingle.rawValue, range: range)
+            attributedString.addAttribute(.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: range)
         #else
         
         #endif
