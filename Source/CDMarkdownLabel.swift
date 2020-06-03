@@ -329,6 +329,8 @@ open class CDMarkdownLabel: UILabel {
             break
         case .regionExited:
             break
+        @unknown default:
+            break
         }
 
         return avoidSuperCall
