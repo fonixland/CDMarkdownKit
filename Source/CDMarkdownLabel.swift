@@ -323,12 +323,6 @@ open class CDMarkdownLabel: UILabel {
             self.selectedURLRange = nil
         case .stationary:
             break
-        case .regionEntered:
-            break
-        case .regionMoved:
-            break
-        case .regionExited:
-            break
         }
 
         return avoidSuperCall
