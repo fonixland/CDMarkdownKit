@@ -34,7 +34,7 @@
 open class CDMarkdownBold: CDMarkdownCommonElement {
 
 //    fileprivate static let regex = "(\\s+|^)(\\*\\*|__)(.+?)(\\2)"
-    fileprivate static let regex = "(\\s+|^)(\\*\\*)(.+?)(\\2)"
+    fileprivate static let regex = "(\\s+|^|\\()(\\*\\*)(.+?)(\\2)"
     
     open var font: CDFont?
     open var color: CDColor?
